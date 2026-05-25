@@ -70,17 +70,22 @@ describe("linked list previous function", () => {
 });
 
 describe("test list size function", () => {
-  test("list size 4", () => {
+  test("list size 0", () => {
+    expect(newList.size()).toEqual(0);
+  });
+  test("list size 3", () => {
     let firstNode = Node();
     firstNode.value = `i am totally first ele now`;
     newList.head = firstNode;
-    const size = 4;
-    for (let i = 0; i < size - 1; i++) {
-      let newNode = Node();
-      newNode.value = `i am ${i} element`;
-      newList.nextNode = newNode;
-    }
 
-    expect(newList.size()).toEqual(4);
+    let secondNode = Node();
+    firstNode.value = `i am second ele`;
+    newList.head.nextNode = secondNode;
+
+    let thirdNode = Node();
+    firstNode.value = `i am third ele`;
+    newList.head.nextNode.nextNode = thirdNode;
+
+    expect(newList.size()).toEqual(3);
   });
 });

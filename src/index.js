@@ -28,7 +28,14 @@ function LinkedList() {
       }
     },
     size() {
-      return 5;
+      if (this.head === null) return 0;
+      let counter = 1;
+      let temp = this.head;
+      while (temp.nextNode !== null) {
+        temp = temp.nextNode;
+        counter++;
+      }
+      return counter;
     },
   };
 }
