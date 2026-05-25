@@ -27,6 +27,9 @@ function LinkedList() {
         temp.nextNode = Node(value);
       }
     },
+    size() {
+      return 5;
+    },
   };
 }
 

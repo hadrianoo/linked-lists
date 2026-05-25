@@ -68,3 +68,19 @@ describe("linked list previous function", () => {
     expect(newList.head.nextNode.value).toEqual("i want to be first");
   });
 });
+
+describe("test list size function", () => {
+  test("list size 4", () => {
+    let firstNode = Node();
+    firstNode.value = `i am totally first ele now`;
+    newList.head = firstNode;
+    const size = 4;
+    for (let i = 0; i < size - 1; i++) {
+      let newNode = Node();
+      newNode.value = `i am ${i} element`;
+      newList.nextNode = newNode;
+    }
+
+    expect(newList.size()).toEqual(4);
+  });
+});
