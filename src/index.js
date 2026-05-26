@@ -8,6 +8,7 @@ function Node(value = null, nextNode = null) {
 function LinkedList() {
   return {
     firstNode: null,
+
     prepend(value) {
       if (this.firstNode === null) {
         this.firstNode = Node(value);
@@ -58,6 +59,17 @@ function LinkedList() {
         temp = temp.nextNode;
         counter++;
         if (counter === index) return temp.value;
+      }
+    },
+    pop() {
+      if (this.firstNode === null) return;
+      let head = this.firstNode;
+      if (this.size() > 1) {
+        this.firstNode = head.nextNode;
+        return head.value;
+      } else {
+        this.firstNode = null;
+        return head.value;
       }
     },
   };

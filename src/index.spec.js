@@ -152,3 +152,41 @@ describe("test at function", () => {
     );
   });
 });
+describe("test pop function", () => {
+  // beforeEach(() => {
+  //   let fNode = Node();
+  //   fNode.value = `i am totally index 0 ele now`;
+  //   newList.firstNode = fNode;
+
+  //   let sNode = Node();
+  //   sNode.value = `i am index 1 ele`;
+  //   newList.firstNode.nextNode = sNode;
+
+  //   let tNode = Node();
+  //   tNode.value = `i am index 2 ele`;
+  //   newList.firstNode.nextNode.nextNode = tNode;
+  // });
+  test("if empty return undefined", () => {
+    expect(newList.pop()).toEqual(undefined);
+  });
+  test("return head node", () => {
+    let fNode = Node();
+    fNode.value = `i am totally index 0 ele now`;
+    newList.firstNode = fNode;
+
+    let sNode = Node();
+    sNode.value = `i was index 1 ele`;
+    newList.firstNode.nextNode = sNode;
+
+    expect(newList.pop()).toEqual(`i am totally index 0 ele now`);
+    expect(newList.firstNode.value).toEqual(`i was index 1 ele`);
+  });
+  test("return head node", () => {
+    let fNode = Node();
+    fNode.value = `i am totally index 0 ele now`;
+    newList.firstNode = fNode;
+
+    expect(newList.pop()).toEqual(`i am totally index 0 ele now`);
+    expect(newList.firstNode).toEqual(null);
+  });
+});
