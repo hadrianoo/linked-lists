@@ -7,20 +7,20 @@ function Node(value = null, nextNode = null) {
 
 function LinkedList() {
   return {
-    head: null,
+    firsNode: null,
     prepend(value) {
-      if (this.head === null) {
-        this.head = Node(value);
+      if (this.firsNode === null) {
+        this.firsNode = Node(value);
       } else {
-        let temp = this.head;
-        this.head = Node(value, temp);
+        let temp = this.firsNode;
+        this.firsNode = Node(value, temp);
       }
     },
     append(value) {
-      if (this.head === null) {
+      if (this.firsNode === null) {
         this.prepend(value);
       } else {
-        let temp = this.head;
+        let temp = this.firsNode;
         while (temp.nextNode !== null) {
           temp = temp.nextNode;
         }
@@ -28,14 +28,17 @@ function LinkedList() {
       }
     },
     size() {
-      if (this.head === null) return 0;
+      if (this.firsNode === null) return 0;
       let counter = 1;
-      let temp = this.head;
+      let temp = this.firsNode;
       while (temp.nextNode !== null) {
         temp = temp.nextNode;
         counter++;
       }
       return counter;
+    },
+    head() {
+      if (this.firsNode !== null) return this.firsNode.value;
     },
   };
 }

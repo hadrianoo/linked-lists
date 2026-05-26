@@ -18,54 +18,53 @@ beforeEach(() => {
   newList = LinkedList();
 });
 afterEach(() => {
-  newList.head = null;
+  newList = null;
 });
 
 describe("linked list append function", () => {
+  const value = "i am node element";
   let newNode = Node();
   beforeEach(() => {
     newNode.value = "i am first";
-    newList.head = newNode;
+    newList.firsNode = newNode;
   });
   afterEach(() => {
     newNode = Node();
   });
 
   test("append new node to end of the list", () => {
-    const value = "i am node element 1";
     newList.append(value);
-    expect(newList.head.nextNode.value).toEqual("i am node element 1");
-    expect(newList.head.nextNode.nextNode).toEqual(null);
+    expect(newList.firsNode.nextNode.value).toEqual("i am node element");
+    expect(newList.firsNode.nextNode.nextNode).toEqual(null);
   });
   test("check if append does not remove previous element", () => {
-    const value = "i am node element 2";
     newList.append(value);
-    expect(newList.head.value).toEqual("i am first");
-    expect(newList.head.nextNode).not.toEqual(null);
+    expect(newList.firsNode.value).toEqual("i am first");
+    expect(newList.firsNode.nextNode).not.toEqual(null);
   });
 });
 
 describe("linked list previous function", () => {
   const value = "i am node element 1";
-  test("append new node as first ele if head is null", () => {
+  test("append new node as first ele if firsNode is null", () => {
     newList.append(value);
-    expect(newList.head.value).toEqual("i am node element 1");
-    expect(newList.head.nextNode).toEqual(null);
+    expect(newList.firsNode.value).toEqual("i am node element 1");
+    expect(newList.firsNode.nextNode).toEqual(null);
   });
-  test("prepend if head is null", () => {
+  test("prepend if firsNode is null", () => {
     newList.prepend(value);
-    expect(newList.head.value).toEqual("i am node element 1");
-    expect(newList.head.nextNode).toEqual(null);
+    expect(newList.firsNode.value).toEqual("i am node element 1");
+    expect(newList.firsNode.nextNode).toEqual(null);
   });
-  test("prepend if head is not null", () => {
+  test("prepend if firsNode is not null", () => {
     let newNode = Node();
     newNode.value = "i want to be first";
-    newList.head = newNode;
+    newList.firsNode = newNode;
 
     newList.prepend(value);
-    expect(newList.head.value).toEqual("i am node element 1");
-    expect(newList.head.nextNode).not.toEqual(null);
-    expect(newList.head.nextNode.value).toEqual("i want to be first");
+    expect(newList.firsNode.value).toEqual("i am node element 1");
+    expect(newList.firsNode.nextNode).not.toEqual(null);
+    expect(newList.firsNode.nextNode.value).toEqual("i want to be first");
   });
 });
 
@@ -74,18 +73,30 @@ describe("test list size function", () => {
     expect(newList.size()).toEqual(0);
   });
   test("list size 3", () => {
-    let firstNode = Node();
-    firstNode.value = `i am totally first ele now`;
-    newList.head = firstNode;
+    let fNode = Node();
+    fNode.value = `i am totally first ele now`;
+    newList.firsNode = fNode;
 
     let secondNode = Node();
-    firstNode.value = `i am second ele`;
-    newList.head.nextNode = secondNode;
+    secondNode.value = `i am second ele`;
+    newList.firsNode.nextNode = secondNode;
 
     let thirdNode = Node();
-    firstNode.value = `i am third ele`;
-    newList.head.nextNode.nextNode = thirdNode;
+    thirdNode.value = `i am third ele`;
+    newList.firsNode.nextNode.nextNode = thirdNode;
 
     expect(newList.size()).toEqual(3);
+  });
+});
+
+describe("test firsNode function", () => {
+  test("if list empty return undefined", () => {
+    expect(newList.head()).toEqual(undefined);
+  });
+  test("return value of first node", () => {
+    let fNode = Node();
+    fNode.value = `i am totally first ele now`;
+    newList.firsNode = fNode;
+    expect(newList.head()).toEqual(`i am totally first ele now`);
   });
 });
