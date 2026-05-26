@@ -241,3 +241,17 @@ describe("test findIndex function", () => {
     expect(newList.findIndex(value)).toEqual(2);
   });
 });
+
+describe("test toString function", () => {
+  test("print list as string", () => {
+    newList.append("dog");
+    newList.append("cat");
+    newList.append("parrot");
+    newList.append("hamster");
+    newList.append("snake");
+    newList.append("turtle");
+    expect(newList.toString()).toEqual(
+      "( dog ) -> ( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> ( turtle ) -> null",
+    );
+  });
+});

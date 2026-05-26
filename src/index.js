@@ -23,27 +23,27 @@ function LinkedList() {
       if (this.isListEmpty()) {
         this.firstNode = Node(value);
       } else {
-        let temp = this.firstNode;
-        this.firstNode = Node(value, temp);
+        let node = this.firstNode;
+        this.firstNode = Node(value, node);
       }
     },
     append(value) {
       if (this.isListEmpty()) {
         this.prepend(value);
       } else {
-        let temp = this.firstNode;
-        while (isNextNodeNull(temp)) {
-          temp = temp.nextNode;
+        let node = this.firstNode;
+        while (isNextNodeNull(node)) {
+          node = node.nextNode;
         }
-        temp.nextNode = Node(value);
+        node.nextNode = Node(value);
       }
     },
     size() {
       if (this.isListEmpty()) return 0;
       let counter = 1;
-      let temp = this.firstNode;
-      while (isNextNodeNull(temp)) {
-        temp = temp.nextNode;
+      let node = this.firstNode;
+      while (isNextNodeNull(node)) {
+        node = node.nextNode;
         counter++;
       }
       return counter;
@@ -54,20 +54,20 @@ function LinkedList() {
     },
     tail() {
       if (this.isListEmpty()) return;
-      let temp = this.firstNode;
-      while (isNextNodeNull(temp)) {
-        temp = temp.nextNode;
+      let node = this.firstNode;
+      while (isNextNodeNull(node)) {
+        node = node.nextNode;
       }
-      return temp.value;
+      return node.value;
     },
     at(index) {
       if (index >= this.size()) return;
       // if (index === 0) return this.firstNode.value;
-      let temp = this.firstNode;
+      let node = this.firstNode;
       let counter = 0;
-      while (isNodeNull(temp)) {
-        if (counter === index) return temp.value;
-        temp = temp.nextNode;
+      while (isNodeNull(node)) {
+        if (counter === index) return node.value;
+        node = node.nextNode;
         counter++;
       }
     },
@@ -84,23 +84,34 @@ function LinkedList() {
     },
     contains(value) {
       if (this.isListEmpty()) return false;
-      let temp = this.firstNode;
-      while (isNodeNull(temp)) {
-        if (temp.value === value) return true;
-        temp = temp.nextNode;
+      let node = this.firstNode;
+      while (isNodeNull(node)) {
+        if (node.value === value) return true;
+        node = node.nextNode;
       }
       return false;
     },
     findIndex(value) {
       if (this.isListEmpty()) return -1;
-      let temp = this.firstNode;
+      let node = this.firstNode;
       let index = 0;
-      while (isNodeNull(temp)) {
-        if (temp.value === value) return index;
+      while (isNodeNull(node)) {
+        if (node.value === value) return index;
         index++;
-        temp = temp.nextNode;
+        node = node.nextNode;
       }
       return -1;
+    },
+    toString() {
+      if (this.isListEmpty()) return "";
+      let node = this.firstNode;
+      let string = "";
+      while (isNodeNull(node)) {
+        string += `( ${node.value} )` + " -> ";
+        node = node.nextNode;
+      }
+      if (node === null) string += "null";
+      return string;
     },
   };
 }
