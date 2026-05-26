@@ -6,11 +6,21 @@ function Node(value = null, nextNode = null) {
 }
 
 function LinkedList() {
+  function isNextNodeNull(node) {
+    return node.nextNode !== null;
+  }
+  function isNodeNull(node) {
+    return node !== null;
+  }
   return {
     firstNode: null,
+    isListEmpty() {
+      if (this.firstNode === null) return true;
+      return false;
+    },
 
     prepend(value) {
-      if (this.firstNode === null) {
+      if (this.isListEmpty()) {
         this.firstNode = Node(value);
       } else {
         let temp = this.firstNode;
@@ -18,51 +28,51 @@ function LinkedList() {
       }
     },
     append(value) {
-      if (this.firstNode === null) {
+      if (this.isListEmpty()) {
         this.prepend(value);
       } else {
         let temp = this.firstNode;
-        while (temp.nextNode !== null) {
+        while (isNextNodeNull(temp)) {
           temp = temp.nextNode;
         }
         temp.nextNode = Node(value);
       }
     },
     size() {
-      if (this.firstNode === null) return 0;
+      if (this.isListEmpty()) return 0;
       let counter = 1;
       let temp = this.firstNode;
-      while (temp.nextNode !== null) {
+      while (isNextNodeNull(temp)) {
         temp = temp.nextNode;
         counter++;
       }
       return counter;
     },
     head() {
-      if (this.firstNode === null) return;
+      if (this.isListEmpty()) return;
       return this.firstNode.value;
     },
     tail() {
-      if (this.firstNode === null) return;
+      if (this.isListEmpty()) return;
       let temp = this.firstNode;
-      while (temp.nextNode !== null) {
+      while (isNextNodeNull(temp)) {
         temp = temp.nextNode;
       }
       return temp.value;
     },
     at(index) {
       if (index >= this.size()) return;
-      if (index === 0) return this.firstNode.value;
+      // if (index === 0) return this.firstNode.value;
       let temp = this.firstNode;
       let counter = 0;
-      while (temp.nextNode !== null) {
+      while (isNodeNull(temp)) {
+        if (counter === index) return temp.value;
         temp = temp.nextNode;
         counter++;
-        if (counter === index) return temp.value;
       }
     },
     pop() {
-      if (this.firstNode === null) return;
+      if (this.isListEmpty()) return;
       let head = this.firstNode;
       if (this.size() > 1) {
         this.firstNode = head.nextNode;
@@ -73,13 +83,24 @@ function LinkedList() {
       }
     },
     contains(value) {
-      if (this.firstNode === null) return false;
+      if (this.isListEmpty()) return false;
       let temp = this.firstNode;
-      while (temp.nextNode !== null) {
+      while (isNodeNull(temp)) {
         if (temp.value === value) return true;
         temp = temp.nextNode;
       }
       return false;
+    },
+    findIndex(value) {
+      if (this.isListEmpty()) return -1;
+      let temp = this.firstNode;
+      let index = 0;
+      while (isNodeNull(temp)) {
+        if (temp.value === value) return index;
+        index++;
+        temp = temp.nextNode;
+      }
+      return -1;
     },
   };
 }

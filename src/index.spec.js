@@ -181,7 +181,7 @@ describe("test pop function", () => {
 describe("test contains function", () => {
   beforeEach(() => {
     let fNode = Node();
-    fNode.value = `i am totally index 0 ele now`;
+    fNode.value = `000`;
     newList.firstNode = fNode;
 
     let sNode = Node();
@@ -189,7 +189,7 @@ describe("test contains function", () => {
     newList.firstNode.nextNode = sNode;
 
     let tNode = Node();
-    tNode.value = `i am index 2 ele`;
+    tNode.value = `111`;
     newList.firstNode.nextNode.nextNode = tNode;
   });
   test("return false", () => {
@@ -199,5 +199,45 @@ describe("test contains function", () => {
   test("return true", () => {
     const value = "123";
     expect(newList.contains(value)).toEqual(true);
+  });
+  test("return true, last node is 111", () => {
+    const value = "111";
+    expect(newList.contains(value)).toEqual(true);
+  });
+  test("return true, first node is 000", () => {
+    const value = "000";
+    expect(newList.contains(value)).toEqual(true);
+  });
+});
+
+describe("test findIndex function", () => {
+  beforeEach(() => {
+    let fNode = Node();
+    fNode.value = `000`;
+    newList.firstNode = fNode;
+
+    let sNode = Node();
+    sNode.value = `123`;
+    newList.firstNode.nextNode = sNode;
+
+    let tNode = Node();
+    tNode.value = `1231`;
+    newList.firstNode.nextNode.nextNode = tNode;
+  });
+  test("return -1", () => {
+    const value = "1234";
+    expect(newList.findIndex(value)).toEqual(-1);
+  });
+  test("return 0", () => {
+    const value = `000`;
+    expect(newList.findIndex(value)).toEqual(0);
+  });
+  test("return 1", () => {
+    const value = `123`;
+    expect(newList.findIndex(value)).toEqual(1);
+  });
+  test("return 2", () => {
+    const value = `1231`;
+    expect(newList.findIndex(value)).toEqual(2);
   });
 });
