@@ -7,20 +7,20 @@ function Node(value = null, nextNode = null) {
 
 function LinkedList() {
   return {
-    firsNode: null,
+    firstNode: null,
     prepend(value) {
-      if (this.firsNode === null) {
-        this.firsNode = Node(value);
+      if (this.firstNode === null) {
+        this.firstNode = Node(value);
       } else {
-        let temp = this.firsNode;
-        this.firsNode = Node(value, temp);
+        let temp = this.firstNode;
+        this.firstNode = Node(value, temp);
       }
     },
     append(value) {
-      if (this.firsNode === null) {
+      if (this.firstNode === null) {
         this.prepend(value);
       } else {
-        let temp = this.firsNode;
+        let temp = this.firstNode;
         while (temp.nextNode !== null) {
           temp = temp.nextNode;
         }
@@ -28,9 +28,9 @@ function LinkedList() {
       }
     },
     size() {
-      if (this.firsNode === null) return 0;
+      if (this.firstNode === null) return 0;
       let counter = 1;
-      let temp = this.firsNode;
+      let temp = this.firstNode;
       while (temp.nextNode !== null) {
         temp = temp.nextNode;
         counter++;
@@ -38,16 +38,27 @@ function LinkedList() {
       return counter;
     },
     head() {
-      if (this.firsNode === null) return;
-      return this.firsNode.value;
+      if (this.firstNode === null) return;
+      return this.firstNode.value;
     },
     tail() {
-      if (this.firsNode === null) return;
-      let temp = this.firsNode;
+      if (this.firstNode === null) return;
+      let temp = this.firstNode;
       while (temp.nextNode !== null) {
         temp = temp.nextNode;
       }
       return temp.value;
+    },
+    at(index) {
+      if (index >= this.size()) return;
+      if (index === 0) return this.firstNode.value;
+      let temp = this.firstNode;
+      let counter = 0;
+      while (temp.nextNode !== null) {
+        temp = temp.nextNode;
+        counter++;
+        if (counter === index) return temp.value;
+      }
     },
   };
 }
