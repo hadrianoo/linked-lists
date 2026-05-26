@@ -72,6 +72,15 @@ function LinkedList() {
         return head.value;
       }
     },
+    contains(value) {
+      if (this.firstNode === null) return false;
+      let temp = this.firstNode;
+      while (temp.nextNode !== null) {
+        if (temp.value === value) return true;
+        temp = temp.nextNode;
+      }
+      return false;
+    },
   };
 }
 

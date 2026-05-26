@@ -153,19 +153,6 @@ describe("test at function", () => {
   });
 });
 describe("test pop function", () => {
-  // beforeEach(() => {
-  //   let fNode = Node();
-  //   fNode.value = `i am totally index 0 ele now`;
-  //   newList.firstNode = fNode;
-
-  //   let sNode = Node();
-  //   sNode.value = `i am index 1 ele`;
-  //   newList.firstNode.nextNode = sNode;
-
-  //   let tNode = Node();
-  //   tNode.value = `i am index 2 ele`;
-  //   newList.firstNode.nextNode.nextNode = tNode;
-  // });
   test("if empty return undefined", () => {
     expect(newList.pop()).toEqual(undefined);
   });
@@ -188,5 +175,29 @@ describe("test pop function", () => {
 
     expect(newList.pop()).toEqual(`i am totally index 0 ele now`);
     expect(newList.firstNode).toEqual(null);
+  });
+});
+
+describe("test contains function", () => {
+  beforeEach(() => {
+    let fNode = Node();
+    fNode.value = `i am totally index 0 ele now`;
+    newList.firstNode = fNode;
+
+    let sNode = Node();
+    sNode.value = `123`;
+    newList.firstNode.nextNode = sNode;
+
+    let tNode = Node();
+    tNode.value = `i am index 2 ele`;
+    newList.firstNode.nextNode.nextNode = tNode;
+  });
+  test("return false", () => {
+    const value = "1234";
+    expect(newList.contains(value)).toEqual(false);
+  });
+  test("return true", () => {
+    const value = "123";
+    expect(newList.contains(value)).toEqual(true);
   });
 });
