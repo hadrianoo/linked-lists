@@ -255,3 +255,42 @@ describe("test toString function", () => {
     );
   });
 });
+
+describe("test insertAt function", () => {
+  beforeEach(() => {
+    newList.append("dog");
+    newList.append("cat");
+    newList.append("parrot");
+    newList.append("hamster");
+    newList.append("snake");
+    newList.append("turtle");
+  });
+  test("throw RangeError", () => {
+    expect(() => newList.insertAt(10, 1)).toThrow(RangeError);
+  });
+  test("insert value 10 at index 1", () => {
+    newList.insertAt(1, 10);
+    expect(newList.toString()).toEqual(
+      "( dog ) -> ( 10 ) -> ( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> ( turtle ) -> null",
+    );
+  });
+  test("insert value 10 and 11 start at index 1", () => {
+    newList.insertAt(1, 10, 11);
+    expect(newList.toString()).toEqual(
+      "( dog ) -> ( 10 ) -> ( 11 ) -> ( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> ( turtle ) -> null",
+    );
+  });
+  test("insert value 10 and 11 start at index 6 (last)", () => {
+    newList.insertAt(6, 10, 11);
+    expect(newList.toString()).toEqual(
+      "( dog ) -> ( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> ( turtle ) -> ( 10 ) -> ( 11 ) -> null",
+    );
+  });
+
+  test("insert value 10 and 11 start at index 0", () => {
+    newList.insertAt(0, 10, 11);
+    expect(newList.toString()).toEqual(
+      "( 10 ) -> ( 11 ) -> ( dog ) -> ( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> ( turtle ) -> null",
+    );
+  });
+});

@@ -62,7 +62,6 @@ function LinkedList() {
     },
     at(index) {
       if (index >= this.size()) return;
-      // if (index === 0) return this.firstNode.value;
       let node = this.firstNode;
       let counter = 0;
       while (isNodeNull(node)) {
@@ -113,7 +112,45 @@ function LinkedList() {
       if (node === null) string += "null";
       return string;
     },
+    insertAt(index, ...values) {
+      if (index > this.size() || index < 0) throw RangeError();
+      const valuesArray = [...values].reverse();
+      if (index === 0) {
+        valuesArray.forEach((item) => this.prepend(item));
+        return;
+      }
+
+      let prev = null;
+      let cur = this.firstNode;
+      let counter = 0;
+
+      for (const item of valuesArray) {
+        while (isNodeNull(cur) && counter !== index) {
+          counter++;
+          prev = cur;
+          cur = cur.nextNode;
+        }
+
+        if (cur !== null) {
+          prev.nextNode = Node(item, cur);
+        } else {
+          prev.nextNode = Node(item);
+        }
+        counter = 0;
+        prev = null;
+        cur = this.firstNode;
+      }
+      // return prev;
+    },
   };
 }
-
+const newList = LinkedList();
+newList.append("dog");
+newList.append("cat");
+newList.append("parrot");
+newList.append("hamster");
+newList.append("snake");
+newList.append("turtle");
+newList.insertAt(0, 10, 11, 12);
+console.log(newList.toString());
 export { Node, LinkedList };
