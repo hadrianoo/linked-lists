@@ -140,7 +140,9 @@ function LinkedList() {
         prev = null;
         cur = this.firstNode;
       }
-      // return prev;
+    },
+    removeAt(index) {
+      if (index > this.size() || index < 0) throw RangeError();
     },
   };
 }
@@ -151,6 +153,5 @@ newList.append("parrot");
 newList.append("hamster");
 newList.append("snake");
 newList.append("turtle");
-newList.insertAt(0, 10, 11, 12);
 console.log(newList.toString());
 export { Node, LinkedList };

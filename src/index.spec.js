@@ -294,3 +294,36 @@ describe("test insertAt function", () => {
     );
   });
 });
+describe("test removeAt function", () => {
+  beforeEach(() => {
+    newList.append("dog");
+    newList.append("cat");
+    newList.append("parrot");
+    newList.append("hamster");
+    newList.append("snake");
+    newList.append("turtle");
+  });
+  test("throw RangeError", () => {
+    expect(() => newList.removeAt(10)).toThrow(RangeError);
+  });
+  test("remove value cat at index 1", () => {
+    newList.removeAt(1);
+    expect(newList.toString()).toEqual(
+      "( dog ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> ( turtle ) -> null",
+    );
+  });
+
+  test("remove value turtle at index 6 (last)", () => {
+    newList.removeAt(6);
+    expect(newList.toString()).toEqual(
+      "( dog ) -> ( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> null",
+    );
+  });
+
+  test("remove value dog at index 0", () => {
+    newList.removeAt(0);
+    expect(newList.toString()).toEqual(
+      "( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> ( turtle ) -> null",
+    );
+  });
+});
