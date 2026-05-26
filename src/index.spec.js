@@ -89,7 +89,7 @@ describe("test list size function", () => {
   });
 });
 
-describe("test firsNode function", () => {
+describe("test head function", () => {
   test("if list empty return undefined", () => {
     expect(newList.head()).toEqual(undefined);
   });
@@ -98,5 +98,23 @@ describe("test firsNode function", () => {
     fNode.value = `i am totally first ele now`;
     newList.firsNode = fNode;
     expect(newList.head()).toEqual(`i am totally first ele now`);
+  });
+});
+
+describe("test tail function", () => {
+  test("when empty return undefined", () => {
+    expect(newList.tail()).toEqual(undefined);
+  });
+  test("return last value in list", () => {
+    let fNode = Node();
+    fNode.value = `i am totally first ele now`;
+    newList.firsNode = fNode;
+
+    let sNode = Node();
+    sNode.value = `i am last ele`;
+    newList.firsNode.nextNode = sNode;
+
+    expect(newList.tail()).toEqual(`i am last ele`);
+    expect(newList.firsNode.nextNode.nextNode).toEqual(null);
   });
 });

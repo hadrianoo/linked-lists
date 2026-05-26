@@ -38,7 +38,16 @@ function LinkedList() {
       return counter;
     },
     head() {
-      if (this.firsNode !== null) return this.firsNode.value;
+      if (this.firsNode === null) return;
+      return this.firsNode.value;
+    },
+    tail() {
+      if (this.firsNode === null) return;
+      let temp = this.firsNode;
+      while (temp.nextNode !== null) {
+        temp = temp.nextNode;
+      }
+      return temp.value;
     },
   };
 }
