@@ -113,7 +113,7 @@ function LinkedList() {
       return string;
     },
     insertAt(index, ...values) {
-      if (index > this.size() || index < 0) throw RangeError();
+      if (index > this.size() || index < 0) throw new RangeError();
       const valuesArray = [...values].reverse();
       if (index === 0) {
         valuesArray.forEach((item) => this.prepend(item));
@@ -142,7 +142,7 @@ function LinkedList() {
       }
     },
     removeAt(index) {
-      if (index >= this.size() || index < 0) throw RangeError();
+      if (index >= this.size() || index < 0) throw new RangeError();
       if (index === 0) {
         this.pop();
         return;
