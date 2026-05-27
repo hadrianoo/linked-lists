@@ -142,7 +142,26 @@ function LinkedList() {
       }
     },
     removeAt(index) {
-      if (index > this.size() || index < 0) throw RangeError();
+      if (index >= this.size() || index < 0) throw RangeError();
+      if (index === 0) {
+        this.pop();
+        return;
+      }
+      let prev = null;
+      let cur = this.firstNode;
+      let counter = 0;
+
+      while (isNodeNull(cur) && counter !== index) {
+        counter++;
+        prev = cur;
+        cur = cur.nextNode;
+      }
+      if (cur !== null) {
+        prev.nextNode = cur.nextNode;
+      } else {
+        console.log(prev.nextNode);
+        prev.nextNode = null;
+      }
     },
   };
 }
@@ -153,5 +172,6 @@ newList.append("parrot");
 newList.append("hamster");
 newList.append("snake");
 newList.append("turtle");
+newList.removeAt(5);
 console.log(newList.toString());
 export { Node, LinkedList };

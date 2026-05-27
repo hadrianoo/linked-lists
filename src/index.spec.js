@@ -313,8 +313,8 @@ describe("test removeAt function", () => {
     );
   });
 
-  test("remove value turtle at index 6 (last)", () => {
-    newList.removeAt(6);
+  test("remove value turtle at index 5 (last)", () => {
+    newList.removeAt(5);
     expect(newList.toString()).toEqual(
       "( dog ) -> ( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> null",
     );
