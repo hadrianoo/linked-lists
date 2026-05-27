@@ -6,10 +6,10 @@ function Node(value = null, nextNode = null) {
 }
 
 function LinkedList() {
-  function isNextNodeNull(node) {
+  function hasNexNode(node) {
     return node.nextNode !== null;
   }
-  function isNodeNull(node) {
+  function nodeExists(node) {
     return node !== null;
   }
   return {
@@ -32,7 +32,7 @@ function LinkedList() {
         this.prepend(value);
       } else {
         let node = this.firstNode;
-        while (isNextNodeNull(node)) {
+        while (hasNexNode(node)) {
           node = node.nextNode;
         }
         node.nextNode = Node(value);
@@ -42,7 +42,7 @@ function LinkedList() {
       if (this.isListEmpty()) return 0;
       let counter = 1;
       let node = this.firstNode;
-      while (isNextNodeNull(node)) {
+      while (hasNexNode(node)) {
         node = node.nextNode;
         counter++;
       }
@@ -55,7 +55,7 @@ function LinkedList() {
     tail() {
       if (this.isListEmpty()) return;
       let node = this.firstNode;
-      while (isNextNodeNull(node)) {
+      while (hasNexNode(node)) {
         node = node.nextNode;
       }
       return node.value;
@@ -64,7 +64,7 @@ function LinkedList() {
       if (index >= this.size()) return;
       let node = this.firstNode;
       let counter = 0;
-      while (isNodeNull(node)) {
+      while (nodeExists(node)) {
         if (counter === index) return node.value;
         node = node.nextNode;
         counter++;
@@ -84,7 +84,7 @@ function LinkedList() {
     contains(value) {
       if (this.isListEmpty()) return false;
       let node = this.firstNode;
-      while (isNodeNull(node)) {
+      while (nodeExists(node)) {
         if (node.value === value) return true;
         node = node.nextNode;
       }
@@ -94,7 +94,7 @@ function LinkedList() {
       if (this.isListEmpty()) return -1;
       let node = this.firstNode;
       let index = 0;
-      while (isNodeNull(node)) {
+      while (nodeExists(node)) {
         if (node.value === value) return index;
         index++;
         node = node.nextNode;
@@ -105,7 +105,7 @@ function LinkedList() {
       if (this.isListEmpty()) return "";
       let node = this.firstNode;
       let string = "";
-      while (isNodeNull(node)) {
+      while (nodeExists(node)) {
         string += `( ${node.value} )` + " -> ";
         node = node.nextNode;
       }
@@ -125,7 +125,7 @@ function LinkedList() {
       let counter = 0;
 
       for (const item of valuesArray) {
-        while (isNodeNull(cur) && counter !== index) {
+        while (nodeExists(cur) && counter !== index) {
           counter++;
           prev = cur;
           cur = cur.nextNode;
@@ -151,7 +151,7 @@ function LinkedList() {
       let cur = this.firstNode;
       let counter = 0;
 
-      while (isNodeNull(cur) && counter !== index) {
+      while (nodeExists(cur) && counter !== index) {
         counter++;
         prev = cur;
         cur = cur.nextNode;
@@ -164,12 +164,4 @@ function LinkedList() {
     },
   };
 }
-const newList = LinkedList();
-newList.append("dog");
-newList.append("cat");
-newList.append("parrot");
-newList.append("hamster");
-newList.append("snake");
-newList.append("turtle");
-console.log(newList.toString());
 export { Node, LinkedList };
