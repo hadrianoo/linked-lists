@@ -159,7 +159,6 @@ function LinkedList() {
       if (cur !== null) {
         prev.nextNode = cur.nextNode;
       } else {
-        console.log(prev.nextNode);
         prev.nextNode = null;
       }
     },
@@ -172,6 +171,5 @@ newList.append("parrot");
 newList.append("hamster");
 newList.append("snake");
 newList.append("turtle");
-newList.removeAt(5);
 console.log(newList.toString());
 export { Node, LinkedList };
